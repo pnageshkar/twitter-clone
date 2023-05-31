@@ -12,6 +12,7 @@ interface SidebarItemProps {
   href?: string;
   auth?: boolean;
   onClick?: () => void;
+  alert?: boolean;
 }
 
 const SidebarItem: React.FC<SidebarItemProps> = ({
@@ -20,6 +21,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   href,
   auth,
   onClick,
+  alert,
 }) => {
   const router = useRouter();
   const loginModal = useLoginModal();
@@ -54,7 +56,10 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         lg:hidden
       '
       >
-        <Icon size={24} color='white' />
+        <Icon size={28} color='white' />
+        {alert ? (
+          <BsDot className='text-sky-500 absolute -top-4 left-0' size={70} />
+        ) : null}
       </div>
       <div
         className='
@@ -73,6 +78,9 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       >
         <Icon size={24} color='white' />
         <p className='hidden lg:block text-white text-xl'>{label}</p>
+        {alert ? (
+          <BsDot className='text-sky-500 absolute -top-4 left-0' size={70} />
+        ) : null}
       </div>
     </div>
   );
